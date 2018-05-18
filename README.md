@@ -29,7 +29,7 @@ How to install
 
 #### 4. Build
 
-how this work
+How this work
 -----------------------------------------------------------------------------------
 
 Open your console on your os system and when you want open Urho3DPlayer add option :

@@ -36,7 +36,7 @@ Open your console on your os system and when you want open Urho3DPlayer add opti
 ```
   52_HelloWorldPlugin.as -plugin 01_TestPlugin -plugin 02_TestPlugin
 ```
-Tt is supposed to get the same result as on the screenshot.
+It is supposed to get the same result as on the screenshot.
 
 Other option, It is possible to download directly your plugin on Angelscript with call:
 ```

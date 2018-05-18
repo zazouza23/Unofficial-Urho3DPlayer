@@ -48,6 +48,12 @@ Screenshot
 -----------------------------------------------------------------------------------
 ![alt tag](https://github.com/zazouza23/Unofficial-Urho3DPlayer/blob/master/Screenshot/TestPlugin.png)
 
+How to create your own plug-in
+-----------------------------------------------------------------------------------
+Just add .cpp and .h files from Source/Template on your project.
+And look at 01_TestPlugin or 02_testPlugin to know how this work. 
+
+
 ---  
 ### License
 The MIT License (MIT)

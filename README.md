@@ -32,15 +32,13 @@ How to install
 how this work
 -----------------------------------------------------------------------------------
 
-Open your console on your os system and add option :
-```
-52_HelloWorldPlugin.as -plugin 01_TestPlugin -plugin 02_TestPlugin
+Open your console on your os system and when you want open Urho3DPlayer add option :
+```52_HelloWorldPlugin.as -plugin 01_TestPlugin -plugin 02_TestPlugin
 ```
 it is supposed to get the same result as on the screenshot.
 
 Other option, It is possible to download directly your plugin on Angelscript with call:
-```Angelscript
-  plugin.Load("MyPluginName");
+```plugin.Load("MyPluginName");
 ``` 
 But keep in mind that you have to reload your script related to your plugin. 
 

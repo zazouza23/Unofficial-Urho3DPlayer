@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2008-2018 the Urho3DPlayer project.
+// Copyright (c) 2008-2018 the Urho3D project.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +32,7 @@ void RegisterPlugin(Context* context, asIScriptEngine* engine)
 	engine->RegisterObjectMethod("Plugin", "bool Load(const String& name, bool forceToStart = true)", asMETHOD(Plugin, Load), asCALL_THISCALL);
 	engine->RegisterObjectMethod("Plugin", "void Unload(const String& name, bool forceToStop = true)", asMETHOD(Plugin, Unload), asCALL_THISCALL);
 	engine->RegisterObjectMethod("Plugin", "void UnloadAll()", asMETHOD(Plugin, UnloadAll), asCALL_THISCALL);
-	engine->RegisterObjectMethod("Plugin", "bool get_isLoaded()", asMETHOD(Plugin, IsLoaded), asCALL_THISCALL);
+	engine->RegisterObjectMethod("Plugin", "bool IsLoaded(const String& name)", asMETHOD(Plugin, IsLoaded), asCALL_THISCALL);
 	engine->RegisterObjectMethod("Plugin", "bool get_empty()", asMETHOD(Plugin, Empty), asCALL_THISCALL);
 
 	static Context* staticContext = context;

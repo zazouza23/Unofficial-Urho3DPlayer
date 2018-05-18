@@ -1,3 +1,25 @@
+//
+// Copyright (c) 2008-2018 the Urho3D project.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+//
+
 #include <Urho3D/IO/Log.h>
 #include <Urho3D/IO/FileSystem.h>
 #include <Urho3D/Container/Vector.h>
@@ -71,14 +93,23 @@ Plugin::~Plugin()
 
 bool Plugin::Load(const String& name, bool forceToStart)
 {
-	URHO3D_LOGINFO("Load plugin function");
 	PluginObject pluginObject;
 
+	// Just keep filename to register
+	const String filename = GetFileName(name);
+	
+	// If it is previously loaded we are not need to reload.
+	if (IsLoaded(filename))
+	{
+		URHO3D_LOGDEBUG("Plugin: \"" + name + "\" previously loaded");
+		return true;
+	}
+
 	// Add or replace extention with current platform
-	ReplaceExtension(name, String(EXTENTION_PLUGIN_NAME));
+	const String replacedName = ReplaceExtension(name, String(EXTENTION_PLUGIN_NAME));
 
 	// First load handle.
-	pluginObject.handle_ = SDL_LoadObject(name.CString());
+	pluginObject.handle_ = SDL_LoadObject(replacedName.CString());
 	if (!pluginObject.handle_)
 	{
 		URHO3D_LOGERROR("Unfind plugin: \"" + name + "\"!");
@@ -116,14 +147,17 @@ bool Plugin::Load(const String& name, bool forceToStart)
 		pluginObject.Start();
 
 	// Set on the memory.
-	pluginObjects_[name] = pluginObject;
+	pluginObjects_[filename] = pluginObject;
 
 	return true;
 }
 
 void Plugin::Unload(const String& name, bool forceToStop)
 {
-	HashMap<String, PluginObject>::Iterator i = pluginObjects_.Find(name);
+	// Just get filename
+	const String filename = GetFileName(name);
+
+	HashMap<String, PluginObject>::Iterator i = pluginObjects_.Find(filename);
 	if (i == pluginObjects_.End())
 	{
 		URHO3D_LOGWARNING("Impossible to unload plugin: \"" + name + "\" unfinding.");
@@ -149,7 +183,10 @@ void Plugin::UnloadAll()
 
 bool Plugin::IsLoaded(const String& name) const
 {
-	HashMap<String, PluginObject>::ConstIterator i = pluginObjects_.Find(name);
+	// Just get filename
+	const String filename = GetFileName(name);
+
+	HashMap<String, PluginObject>::ConstIterator i = pluginObjects_.Find(filename);
 	return (i != pluginObjects_.End());
 }
 

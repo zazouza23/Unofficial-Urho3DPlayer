@@ -28,21 +28,21 @@ void CreateText()
 
     if(helloText == null)
     {
-		// Construct new Text object
+	// Construct new Text object
     	helloText = Text();
 
     	// Set String to display
     	helloText.text = "02_TestPlugin is not loaded :(";
 
-		// Set font and text color
-		helloText.SetFont(cache.GetResource("Font", "Fonts/Anonymous Pro.ttf"), 30);
+	// Set font and text color
+	helloText.SetFont(cache.GetResource("Font", "Fonts/Anonymous Pro.ttf"), 30);
     	helloText.color = Color(0.0f, 1.0f, 0.0f);
 
     	// Align Text center-screen
     	helloText.horizontalAlignment = HA_CENTER;
     	helloText.verticalAlignment = VA_CENTER;
 
-		// Add Text instance to the UI root element
+	// Add Text instance to the UI root element
     	ui.root.AddChild(helloText);
     }
     

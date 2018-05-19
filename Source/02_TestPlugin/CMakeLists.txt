@@ -21,7 +21,7 @@
 #
 
 # Define target name
-set(TARGET_NAME 01_TestPlugin)
+set(TARGET_NAME 02_TestPlugin)
 
 # Define to detect graphic api
 if (URHO3D_OPENGL)

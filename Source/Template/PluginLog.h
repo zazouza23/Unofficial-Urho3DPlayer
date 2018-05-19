@@ -28,7 +28,7 @@
 using namespace Urho3D;
 
 // Special hack log system
-// The reason for this class it is local static logging work on the main application.
+// The reason for this class it is local static logging work only on the main application.
 class PluginLog : public Log
 {
 	URHO3D_OBJECT(PluginLog, Log);
